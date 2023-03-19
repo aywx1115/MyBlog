@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/amaze/header::head-fragment"></head>
+<body id="blog">
+<div th:replace="blog/amaze/header::nav-fragment"></div>
+<div th:replace="blog/amaze/header::header-fragment"></div>
+<div class="am-g am-g-fixed blog-fixed">
+    <div class="am-u-lg-8 am-u-sm-12">
+        <main class="links-list">
+            <th:block th:unless="${#lists.isEmpty(favoriteLinks)}">
+                <div class="title">
+                    <h3>Links</h3>
+                </div>
+                <div class="list">
+                    <ul>
+                        <th:block th:each="favoriteLink : ${favoriteLinks}">
+                            <li><a th:href="@{${favoriteLink.linkUrl}}"
+                                   th:text="${favoriteLink.linkName}">Links</a>
+                                -
+                                <th:block th:text="${favoriteLink.linkDescription}"></th:block>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+            <th:block th:unless="${#lists.isEmpty(recommendLinks)}">
+                <div class="title">
+                    <h3>Recommend</h3>
+                </div>
+                <div class="list">
+                    <ul>
+                        <th:block th:each="recommendLink : ${recommendLinks}">
+                            <li><a th:href="@{${recommendLink.linkUrl}}" th:text="${recommendLink.linkName}">Link Site</a>
+                                -
+                                <th:block th:text="${recommendLink.linkDescription}"></th:block>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+            <th:block th:unless="${#lists.isEmpty(personalLinks)}">
+                <div class="title">
+                    <h3>Personal Link</h3>
+                </div>
+                <div class="list">
+                    <ul>
+                        <th:block th:each="personalLink : ${personalLinks}">
+                            <li><a th:href="@{${personalLink.linkUrl}}"
+                                   th:text="${personalLink.linkName}">Personal Link</a>
+                                -
+                                <th:block th:text="${personalLink.linkDescription}"></th:block>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </th:block>
+            <h2 id="Personal Link">Link Notice</h2>
+            <p>Referral Link Info.</p>
+            <p>My Email
+                <th:block th:text="${configurations.get('yourEmail')}"></th:block>
+                , Format:
+            </p>
+            <ul>
+                <li>Link Name：XX blog</li>
+                <li>Link Url：http://XX blog.site</li>
+                <li>Link Description</li>
+            </ul>
+
+            <p>Pls make sure your link works.</p>
+
+        </main>
+    </div>
+</div>
+<!-- footer-fragment -->
+<footer th:replace="blog/amaze/footer::footer-fragment"></footer>
+</body>
+</html>
